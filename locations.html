@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<title>Travoad</title>
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<style>
+	     ::-webkit-scrollbar-thumb {
+	        height:auto;
+	        background-color: #555;
+	        border:1px solid #fff;
+	        }
+	        ::-webkit-scrollbar {
+	        height:9px;
+	        width:8px;
+	        background-color: #ddd;
+	        border:2px solid #fff;
+	        }  
+        
+	        body {
+	          overflow-y: scroll;
+	        }
+    
+    
+	    @font-face {
+	    font-family: "My Custom Font";
+	    src: url(PoetsenOne-Regular.ttf) format("truetype");
+	}
+	
+	        #container2{
+	            background-color:#525564;
+	            height: 153px;
+	        }
+		
+	        #banner{
+	            background-color:#525564;
+	            height: auto;
+	        }
+    
+	        .container3{
+	            background-color:#97c1cf;
+	            height: auto;
+				padding-bottom:4%;
+	        }
+    
+	        .container4{
+	            background-color:#f8f8f8;
+	            height: 500%;
+	        }
+        
+	        .container5{
+	            background-color:#f8f8f8;
+	            height: 500%;
+				padding-bottom: 1%;
+	        }
+    
+	    .links    {
+	        background:#525564; 
+	        font-size:18px;
+	        text-transform: uppercase;
+	        letter-spacing:1px;
+	        word-spacing:40px;
+	        font-style:bold;
+	        font-family:'Poetsen One';
+	        text-align:center;
+	        text-decoration:none;
+	        border-top: 2px solid #f8f8f8;
+	        position:absolute;
+			width:100%;
+			margin:0;
+	        padding-top: 1%;
+	         }
+     
+	     a:hover   {
+	        color:#b85a58;           
+        
+	    }
+     
+	     a:link {
+	         color:#f8f8f8;
+	         text-decoration: none;
+	     }
+
+	     a:visited {
+	         color:#f8f8f8;
+	     }
+     
+	     a:visited:hover{
+	         color:#b85a58;           
+	     }
+     
+	     a:active{
+	         color:#b85a58;
+	     }
+    
+	    #logo{
+	        padding: 2%;
+	    }
+	
+	    #logoxs{
+	        padding: 2%;
+			padding-top: 5%;
+			margin-left:auto;
+			margin-right: auto;
+
+	    }
+	
+		#map{
+			margin-left:auto;
+			margin-right: auto;
+			align: center;
+		}
+	     .t2{
+	            text-align:center;
+	            padding: 3%;
+	            font-family: 'Helvetica Neue';
+	            color: #bfbab6;
+	            font-size: 20px;
+	            letter-spacing: 3px;
+	        }
+    
+    
+	    #sidebar{
+	        background: #525564;
+	        width: 200px;
+	        height: 100%;
+	        display: block;
+	        position: absolute;
+	        left: -200px;
+	        top: 0px;
+	        transition: left 0.3s linear;
+			z-index:100;
+	    }
+    
+	    #sidebar.visible  {
+	        left:0px;
+	        transition: left 0.3s linear;
+	    }
+    
+	    ul{
+	        margin:0px;
+	        padding:0px;
+	    }
+    
+	    ul li{
+	        list-style:none;
+	    }
+    
+	    ul li a{
+	        background: #525564;
+	        color: #f8f8f8;
+	        border-bottom: 1px solid #f8f8f8;
+	        display: block;
+	        width:180px;
+	        padding:10px;
+	        text-decoration: none;
+	    }
+    
+	    #sidebar-btn{
+	        display:inline-block;
+	        vertical-align: middle;
+	        width: 20px;
+	        height: 15px;
+	        cursor: pointer;
+	        margin: 20px;
+	        position: absolute;
+	        top: 0px;
+	        right: -60px;
+			padding-top: 5%;
+        
+	    }
+    
+	    #sidebar-btn span{
+	        height: 1px;
+	        background: #c35b56;
+	        margin-bottom: 5px;
+	        display: block;
+	    }
+    
+        
+	        .type{
+	            font-family: 'Poetsen One';
+	            color: #f8f8f8;
+	            font-size: 60px;
+	            text-align:center;
+	        }
+
+			@font-face {
+				font-family: 'Poetsen One';
+				src: url('PoetsenOne-Regular.ttf');  
+			}
+	      
+	</style>
+</head>
+
+ 
+
+<body>
+
+   
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>
+    $(document).ready(function(){
+      $('#sidebar-btn').click(function(){
+        $('#sidebar').toggleClass('visible');
+    });
+         });
+    </script>
+		 
+		 <!--large-->
+    <div id="container2" class="hidden-xs">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"></div>	
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                    <img  src="logo.png" width="100%" id="logo">   	 	
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"></div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-0 col-sm-0 col-xs-0"></div>
+					<div class="hidden-xs">	
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="links" width="100%" class="customfont">
+                        <a href="home.html">Home</a>
+                        <a href="locations.html"style="color:#b85a58">Locations</a>
+                        <a href="profile.html">Profile</a>
+                        <a href="login.html">LogIn</a>
+                    </div>
+                    </div>	</div>
+                    <div class="col-md-0 col-sm-0 col-xs-0"></div>	                
+                </div>
+        </div>  
+    </div>
+	 <!--extra small-->
+	<div id="banner" class="visible-xs">
+		<img  src="logo.png" width="65%" id="logoxs" class="visible-xs"> 
+                <div class="visible-xs">
+          <div id="sidebar">
+        <ul>
+        <li><a href="home.html">Home</a></li>   
+        <li><a href="locations.html">Locations</a></li> 
+        <li><a href="profile.html">Profile</a></li>  
+        <li><a href="login.html">Log In</a></li>   
+        </ul>
+
+        <div id="sidebar-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        </div>
+    </div>
+	 </div>
+    
+    <div class="container4">
+  	  
+    </div>
+	
+  
+</body>
