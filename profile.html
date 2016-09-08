@@ -2,6 +2,40 @@
 <html>
 <title>Travoad</title>
 <head>
+     <script type="text/javascript"
+src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
+<script>
+$(document).ready(function() {
+//
+$('a.poplight[href^=#]').click(function() {
+var popID = $(this).attr('rel'); //Get Popup Name 
+var popURL = $(this).attr('href'); //Get Popup href to define size 
+var query= popURL.split('?');
+var dim= query[1].split('&');
+var popWidth = dim[0].split('=')[1]; //Gets the first query string value
+$('#' + popID).fadeIn().css({ 'width': Number( popWidth ) }).prepend('<a href="#" class="close"><img src="http://upload.wikimedia.org/wikipedia/commons/f/f8/Tooltip-CloseButton.png" class="btn_close" title="escape" alt="escape" /></a>');
+var popMargTop = ($('#' + popID).height() + 80) / 2; 
+var popMargLeft = ($('#' + popID).width() + 80) / 2;
+//Apply Margin to Popup
+$('#' + popID).css({ 
+'margin-top' : -popMargTop, 
+'margin-left' : -popMargLeft 
+}); 
+$('body').append('<div id="fade"></div>'); 
+$('#fade').css({'filter' : 'alpha(opacity=80)'}).fadeIn(); //Fade in the fade layer - .css({'filter' : 'alpha(opacity=80)'})
+return false; 
+}); 
+    
+    
+$( document ).delegate( "a.close, #fade", "click", function(){ 
+$('#fade , .popup_block').fadeOut(function() {
+$('#fade, a.close').remove(); //fade them both out
+}); 
+return false; 
+});
+}); 
+</script>
+    
     <meta name="viewport" content="width=device-width">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<style>
@@ -301,6 +335,44 @@
             text-align: center;
         }
         
+        #fade { /*--Transparent background layer--*/
+        display: none; /*--hidden by default--*/
+        background: #fff;
+        background-image: url(''); /*if you want to add a background image to go behind your popup */
+        position: fixed; left: 0; top: 0;
+        width: 100%; height: 100%;
+        opacity: .80;
+        z-index: 9999;
+        }
+        .popup_block{
+         display: none; /*--hidden by default--*/
+         background: #f8f8f8;
+         padding: 20px;
+         border: 1px solid #ddd; /*color of the border of the popup box*/
+         float: left;
+         font-size: 12px; /*font size of the words inside the box */
+         position: fixed;
+         top: 50%; left: 50%;
+         z-index: 99999; /*if the box is hiding behind other things in your theme, add more 9′s */
+        }
+        img.btn_close {
+         float: right;
+         margin: -5px -5px 0 0;
+        }
+        /*--Making IE6 Understand Fixed Positioning--*/
+        *html #fade {
+         position: absolute;
+        }
+        *html .popup_block {
+         position: absolute;
+        }
+
+          .sign2{
+            font-size: 13px;
+            text-align: left;
+            color: #525564;
+            font-family: 'Helvetica Neue';
+        }
         
 	</style>
 </head>
@@ -335,7 +407,7 @@
 					<div class="hidden-xs">	
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="links" width="100%" class="customfont">
-                        <a href="home.html">Home</a>
+                        <a href="index.html">Home</a>
                         <a href="locations.html">Locations</a>
                         <a href="profile.html" style="color:#b85a58">Profile</a>
                         <a href="login.html">LogIn</a>
@@ -351,7 +423,7 @@
                 <div class="visible-xs">
           <div id="sidebar">
         <ul>
-        <li><a href="home.html">Home</a></li>   
+        <li><a href="index.html">Home</a></li>   
         <li><a href="locations.html">Locations</a></li> 
         <li><a href="profile.html">Profile</a></li>  
         <li><a href="login.html">Log In</a></li>   
@@ -411,23 +483,197 @@
                          <a href="#item3">Exchange</a>
                      </div>
                 </div> 
+                
+                
                 <div class="items"align="center">
                     <div id="item1"> 
-                        <h2>Australia</h2>
-                        <h2>Germany</h2>
+                        <a href="#?w=300" rel="01" class="poplight"><h2>Australia</h2></a>
+                        <a href="#?w=300" rel="02" class="poplight"><h2>Germany</h2></a>
+                        <a href="#?w=300" rel="03" class="poplight"><h2>Morocco</h2></a>
                     </div>
                     <div  id="item2">
-                        <h2>New Zealand</h2>
-                        <h2>Belguim</h2>
+                        <a href="#?w=300" rel="04" class="poplight"><h2>New Zealand</h2></a>
+                        <a href="#?w=300" rel="05" class="poplight"><h2>Belgium</h2></a>
+                        <a href="#?w=300" rel="06" class="poplight"><h2>Hong Kong</h2></a>
                     </div>
                     <div id="item3">
-                        <h2>Peru</h2>
-                        <h2>Italy</h2>
+                        <a href="#?w=300" rel="07" class="poplight"><h2>Peru</h2></a>
                     </div>
                     </div>
+
+                
+                
           <div class="col-lg-0 col-md-0 col-sm-0 col-xs-0"></div>
                 </div>
             </div>
+         
+         <div id="01" class="popup_block" style="background: #f8f8f8">
+             <h2 style="text-align:left; padding:4%;">Australia</h2>
+             <div class="sign2" style="padding: 4%;">
+                 <p>
+                     Vaccines:  
+                     <span class="glyphicon glyphicon-remove-circle">
+                     </span>
+                 </p>
+                  <p>Weather:
+                      <br>Spring/ September, October, November
+                      <br>Summer/ December, January, February
+                      <br>Autumn/ March, April, May
+                      <br>Winter/ June, July, August
+                 </p>
+                 <p>Plug Socket Type: Type I
+                 </p>
+                 <p>Language: English</p>
+                 <p>Currency: Australian Dollar (AUD)</p>
+            </div> 
+            
+        </div>
+         
+         <div id="02" class="popup_block" style="background: #f8f8f8">
+             <h2 style="text-align:left; padding:4%;">Germany</h2>
+             <div class="sign2" style="padding: 4%;">
+                 <p>
+                     Vaccines:  
+                     <span class="glyphicon glyphicon-remove-circle">
+                     </span>
+                 </p>
+                  <p>Weather: 
+                      <br>Spring/ March, April, May
+                      <br>Summer/ June, July, August
+                      <br>Autumn/ September, October, November
+                      <br>Winter/ December, January, February
+                      
+                 </p>
+                 <p>Plug Socket Type:<br>Type C/F
+                 </p>
+                 <p>Language: German</p>
+                 <p>Currency: Euro (&euro;)</p>
+                 
+            </div> 
+            
+        </div>
+         
+          <div id="03" class="popup_block" style="background: #f8f8f8">
+             <h2 style="text-align:left; padding:4%;">Morocco</h2>
+             <div class="sign2" style="padding: 4%;">
+                 <p>
+                     Vaccines:  
+                     <span class="glyphicon glyphicon-remove-circle">
+                     </span>
+                 </p>
+                  <p>Weather: 
+                      <br>Spring/ March, April, May
+                      <br>Summer/ June, July, August
+                      <br>Autumn/ September, October, November
+                      <br>Winter/ December, January, February
+                      
+                 </p>
+                 <p>Plug Socket Type:<br>Type C/E
+                 </p>
+                 <p>Language: Arabic</p>
+                 <p>Currency: Moroccan dirham</p>
+                 
+            </div> 
+            
+        </div>
+         
+          <div id="04" class="popup_block" style="background: #f8f8f8">
+             <h2 style="text-align:left; padding:4%;">New Zealand</h2>
+             <div class="sign2" style="padding: 4%;">
+                 <p>
+                     Vaccines:  
+                     <span class="glyphicon glyphicon-remove-circle">
+                     </span>
+                 </p>
+                  <p>Weather: 
+                      <br>Spring/ September, October, November
+                      <br>Summer/ December, January, February
+                      <br>Autumn/ March, April, May
+                      <br>Winter/ June, July, August
+                      
+                 </p>
+                 <p>Plug Socket Type: Type I
+                 </p>
+                 <p>Language: German</p>
+                 <p>Currency: New Zealand Dollar (NZD)</p>
+                 
+            </div> 
+            
+        </div>
+         
+          <div id="05" class="popup_block" style="background: #f8f8f8">
+             <h2 style="text-align:left; padding:4%;">Belgium</h2>
+             <div class="sign2" style="padding: 4%;">
+                 <p>
+                     Vaccines:  
+                     <span class="glyphicon glyphicon-remove-circle">
+                     </span>
+                 </p>
+                  <p>Weather: 
+                      <br>Spring/ March, April, May
+                      <br>Summer/ June, July, August
+                      <br>Autumn/ September, October, November
+                      <br>Winter/ December, January, February
+                      
+                 </p>
+                 <p>Plug Socket Type: Type E
+                 </p>
+                 <p>Language: Dutch, French, German</p>
+                 <p>Currency: Euro (&euro;)</p>
+                 
+            </div> 
+            
+        </div>
+         
+          <div id="06" class="popup_block" style="background: #f8f8f8">
+             <h2 style="text-align:left; padding:4%;">Hong Kong</h2>
+             <div class="sign2" style="padding: 4%;">
+                 <p>
+                     Vaccines:  
+                     <span class="glyphicon glyphicon-remove-circle">
+                     </span>
+                 </p>
+                  <p>Weather: 
+                      <br>Spring/ March, April, May
+                      <br>Summer/ June, July, August
+                      <br>Autumn/ September, October, November
+                      <br>Winter/ December, January, February
+                      
+                 </p>
+                 <p>Plug Socket Type: Type G
+                 </p>
+                 <p>Language: Cantonese</p>
+                 <p>Currency: Hong Kong Dollar (HKD) </p>
+                 
+            </div> 
+            
+        </div>
+         
+          <div id="07" class="popup_block" style="background: #f8f8f8">
+             <h2 style="text-align:left; padding:4%;">Peru</h2>
+             <div class="sign2" style="padding: 4%;">
+                 <p>
+                     Vaccines:  
+                     <span class="glyphicon glyphicon-remove-circle">
+                     </span>
+                 </p>
+                  <p>Weather: 
+                      <br>Spring/ October, November
+                      <br>Summer/ December, January, February, March
+                      <br>Autumn/ April
+                      <br>Winter/ May, June, July, August, September
+                      
+                 </p>
+                 <p>Plug Socket Type:<br> Type A/B/C
+                 </p>
+                 <p>Language: Spanish, Quechua, Aymara</p>
+                 <p>Currency: Sol</p>
+                 
+            </div> 
+            
+        </div>
+         
+         
         </div>
     </div>
         </div>
