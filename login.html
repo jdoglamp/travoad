@@ -2,7 +2,40 @@
 <html>
 <title>Travoad</title>
 <head>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width">
+
+        <script type="text/javascript"
+src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
+<script>
+$(document).ready(function() {
+//
+$('a.poplight[href^=#]').click(function() {
+var popID = $(this).attr('rel'); //Get Popup Name 
+var popURL = $(this).attr('href'); //Get Popup href to define size 
+var query= popURL.split('?');
+var dim= query[1].split('&');
+var popWidth = dim[0].split('=')[1]; //Gets the first query string value
+$('#' + popID).fadeIn().css({ 'width': Number( popWidth ) }).prepend('<a href="#" class="close"><img src="http://upload.wikimedia.org/wikipedia/commons/f/f8/Tooltip-CloseButton.png" class="btn_close" title="escape" alt="escape" /></a>');
+var popMargTop = ($('#' + popID).height() + 80) / 2; 
+var popMargLeft = ($('#' + popID).width() + 80) / 2;
+//Apply Margin to Popup
+$('#' + popID).css({ 
+'margin-top' : -popMargTop, 
+'margin-left' : -popMargLeft 
+}); 
+$('body').append('<div id="fade"></div>'); 
+$('#fade').css({'filter' : 'alpha(opacity=80)'}).fadeIn(); //Fade in the fade layer - .css({'filter' : 'alpha(opacity=80)'})
+return false; 
+}); 
+$( document ).delegate( "a.close, #fade", "click", function(){ 
+$('#fade , .popup_block').fadeOut(function() {
+$('#fade, a.close').remove(); //fade them both out
+}); 
+return false; 
+});
+}); 
+</script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<style>
 	     ::-webkit-scrollbar-thumb {
 	        height:auto;
@@ -34,6 +67,7 @@
 	        #banner{
 	            background-color:#525564;
 	            height: auto;
+                width: 100%;
 	        }
     
 	        .container3{
@@ -44,7 +78,7 @@
     
 	        .container4{
 	            background-color:#f8f8f8;
-	            height: 500%;
+	            height: auto;
 	        }
         
 	        .container5{
@@ -104,11 +138,6 @@
 
 	    }
 	
-		#map{
-			margin-left:auto;
-			margin-right: auto;
-			align: center;
-		}
 	     .t2{
 	            text-align:center;
 	            padding: 3%;
@@ -165,15 +194,16 @@
 	        position: absolute;
 	        top: 0px;
 	        right: -60px;
-			padding-top: 5%;
         
 	    }
     
 	    #sidebar-btn span{
 	        height: 1px;
-	        background: #c35b56;
+	        background: #f8f8f8;
 	        margin-bottom: 5px;
 	        display: block;
+            border: 1px #f8f8f8 solid;
+            background:  #525564;
 	    }
     
         
@@ -189,15 +219,122 @@
 				src: url('PoetsenOne-Regular.ttf');  
 			}
 	      
+        .login{
+            font-family: 'Poetsen One';
+            font-size: 20px;
+            text-align: center;
+            color: #f8f8f8;
+            background-color:#c35b56;
+            width: 5%;
+            height: 4.5%;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 3%;
+        }
+        
+        .box{
+            width:20%;
+            background-color: #f8f8f8;
+            border: 2px #bfbab6 solid;
+            margin-left: auto;
+            margin-right: auto; 
+            margin-top: 4%;
+        }
+
+        .box1{
+            width:20%;
+            background-color: #f8f8f8;
+            border: 2px #bfbab6 solid;
+            margin-left: auto;
+            margin-right: auto; 
+            margin-top: 3%;
+        }
+
+            
+        .box3{
+            width:55%;
+            height:50%;
+            background-color: transparent;
+            border: 3px #c35b56 solid;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top:1%;
+        }
+            
+        .sign{
+            font-size: 13px;
+            text-align: center;
+            color: #525564;
+            padding-top: 2%;
+            font-family: 'Helvetica Neue';
+        }
+
+        
+        h2{
+            color:#b85a58;
+            text-align: center;
+            margin-top: 8%;
+            font-size: 30px;
+            
+        }
+
+               h2{
+            color:#b85a58;
+            text-align: center;
+            margin-top: 8%;
+            font-size: 30px;
+            
+        }
+        
+        body{
+            background-color: #f8f8f8;
+        }
+
+             
+        #fade { /*--Transparent background layer--*/
+            display: none; /*--hidden by default--*/
+            background: #fff;
+            background-image: url(''); /*if you want to add a background image to go behind your popup */
+            position: fixed; left: 0; top: 0;
+            width: 100%; height: 100%;
+            opacity: .80;
+            z-index: 9999;
+            }
+        .popup_block{
+             display: none; /*--hidden by default--*/
+             height:auto;
+             background: #525564;
+             padding: 20px;
+             float: left;
+             font-size: 12px; /*font size of the words inside the box */
+             position: fixed;
+             top: 50%; left: 50%;
+             z-index: 99999; /*if the box is hiding behind other things in your theme, add more 9′s */
+            }
+        
+        img.btn_close {
+             float: right;
+             margin: -5px -5px 0 0;
+            }
+            /*--Making IE6 Understand Fixed Positioning--*/
+            *html #fade {
+             position: absolute;
+            }
+            *html .popup_block {
+             position: absolute;
+         }
+        #type{
+            margin-left:auto;
+            margin-right:auto;
+        }
+
+        
 	</style>
-</head>
-
- 
-
+</head>    
+    
 <body>
-
-   
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script>
     $(document).ready(function(){
       $('#sidebar-btn').click(function(){
@@ -205,7 +342,8 @@
     });
          });
     </script>
-		 
+
+    
 		 <!--large-->
     <div id="container2" class="hidden-xs">
         <div class="container">
@@ -225,7 +363,7 @@
                         <a href="home.html">Home</a>
                         <a href="locations.html">Locations</a>
                         <a href="profile.html">Profile</a>
-                        <a href="login.html" style="color:#b85a58">LogIn</a>
+                        <a href="login.html" style="color:#c35b56">LogIn</a>
                     </div>
                     </div>	</div>
                     <div class="col-md-0 col-sm-0 col-xs-0"></div>	                
@@ -253,9 +391,50 @@
     </div>
 	 </div>
     
-    <div class="container4">
-  	  
-    </div>
-	
+    
+    <div id="container4">
+         <div class="one"></div>
+            <h2 style="font-family: 'Poetsen One'; font-size: 30px;" >MEMBER LOGIN</h2>
+            <div class="input-group input-group-lg"  style="margin-top:3%;" id="type">
+              <input type="text" class="form-control" placeholder="Email" style="width: 100%;">
+            </div><br>
+            <div class="input-group input-group-lg" id="type">
+              <input type="text" class="form-control" placeholder="Password" style="width: 100%;">
+            </div><br>
+            <div class="login" style="width: 18%; margin-top:2%; " >
+                <a href="profile.html" class="loginbutton" style="color:#525564; background-color: #c35b56;">LOGIN</a>
+            </div>  
+            
+        <div class="sign">
+            <div class="visible-xs">
+            <a href="#?w=300" style="color:#525564" rel="01" class="poplight">Not a member? Click here and sign up now!</a>
+            </div>
+            </div>
+                 <div class="hidden-xs">
+            <a href="#?w=500" style="color:#525564; margin-left: 40.5%;" rel="01"  class="poplight">Not a member? Click here and sign up now!</a>
+            </div>
+
   
+        <div id="01" class="popup_block">
+                <h2 style="font-family: 'Poetsen One'; color: #f8f8f8; font-size: 25px;">MEMBER SIGN UP</h2>
+            <div class="input-group input-group-lg"  style="margin-top:3%;" id="type">
+              <input type="text" class="form-control" placeholder="Email" style="width: 100%;">
+            </div><br>
+            <div class="input-group input-group-lg" id="type">
+              <input type="text" class="form-control" placeholder="Password" style="width: 100%;">
+            </div><br>
+            <div class="login" style="width: 100%; margin-top:2%; " >
+                <a href="profile.html" class="loginbutton" style="color:#f8f8ff8; font-size: 20px; background-color: #c35b56;">SIGN UP</a>
+            </div>  
+            </div>
+            
+
+          </div>
+
+
+    
+    
+
+
 </body>
+</html>

@@ -1,41 +1,45 @@
 <!DOCTYPE html>
 <html>
 <title>Travoad</title>
-<head>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	    <script type="text/javascript"
-	src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
-	<script>
-	$(document).ready(function() {
-	//
-	$('a.poplight[href^=#]').click(function() {
-	var popID = $(this).attr('rel'); //Get Popup Name 
-	var popURL = $(this).attr('href'); //Get Popup href to define size 
-	var query= popURL.split('?');
-	var dim= query[1].split('&');
-	var popWidth = dim[0].split('=')[1]; //Gets the first query string value
-	$('#' + popID).fadeIn().css({ 'width': Number( popWidth ) }).prepend('<a href="#" class="close"><img src="http://upload.wikimedia.org/wikipedia/commons/f/f8/Tooltip-CloseButton.png" class="btn_close" title="escape" alt="escape" /></a>');
-	var popMargTop = ($('#' + popID).height() + 80) / 2; 
-	var popMargLeft = ($('#' + popID).width() + 80) / 2;
-	//Apply Margin to Popup
-	$('#' + popID).css({ 
-	'margin-top' : -popMargTop, 
-	'margin-left' : -popMargLeft 
-	}); 
-	$('body').append('<div id="fade"></div>'); 
-	$('#fade').css({'filter' : 'alpha(opacity=80)'}).fadeIn(); //Fade in the fade layer - .css({'filter' : 'alpha(opacity=80)'})
-	return false; 
-	}); 
-	$('a.close, #fade').live('click', function() { 
-	$('#fade , .popup_block').fadeOut(function() {
-	$('#fade, a.close').remove(); //fade them both out
-	}); 
-	return false; 
-	});
-	}); 
-	</script>
-	
+<head>    
+    <meta name="viewport" content="width=device-width">
+    <script type="text/javascript"
+src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
+<script>
+$(document).ready(function() {
+//
+$('a.poplight[href^=#]').click(function() {
+var popID = $(this).attr('rel'); //Get Popup Name 
+var popURL = $(this).attr('href'); //Get Popup href to define size 
+var query= popURL.split('?');
+var dim= query[1].split('&');
+var popWidth = dim[0].split('=')[1]; //Gets the first query string value
+$('#' + popID).fadeIn().css({ 'width': Number( popWidth ) }).prepend('<a href="#" class="close"><img src="http://upload.wikimedia.org/wikipedia/commons/f/f8/Tooltip-CloseButton.png" class="btn_close" title="escape" alt="escape" /></a>');
+var popMargTop = ($('#' + popID).height() + 80) / 2; 
+var popMargLeft = ($('#' + popID).width() + 80) / 2;
+//Apply Margin to Popup
+$('#' + popID).css({ 
+'margin-top' : -popMargTop, 
+'margin-left' : -popMargLeft 
+}); 
+$('body').append('<div id="fade"></div>'); 
+$('#fade').css({'filter' : 'alpha(opacity=80)'}).fadeIn(); //Fade in the fade layer - .css({'filter' : 'alpha(opacity=80)'})
+return false; 
+}); 
+    
+    
+$( document ).delegate( "a.close, #fade", "click", function(){ 
+$('#fade , .popup_block').fadeOut(function() {
+$('#fade, a.close').remove(); //fade them both out
+}); 
+return false; 
+});
+}); 
+</script>
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<style>
+        
+        
 	     ::-webkit-scrollbar-thumb {
 	        height:auto;
 	        background-color: #555;
@@ -68,10 +72,10 @@
 	            height: auto;
 	        }
     
-	        .container3{
+	        #container3{
 	            background-color:#97c1cf;
 	            height: auto;
-				padding-bottom:4%;
+				padding-bottom:5%;
 	        }
     
 	        .container4{
@@ -151,6 +155,15 @@
 	            letter-spacing: 3px;
 	        }
     
+         .t2xs{
+	            text-align:center;
+	            padding: 3%;
+	            font-family: 'Helvetica Neue';
+	            color: #bfbab6;
+	            font-size: 10px;
+	            letter-spacing: 3px;
+	        }
+    
     
 	    #sidebar{
 	        background: #525564;
@@ -198,15 +211,16 @@
 	        position: absolute;
 	        top: 0px;
 	        right: -60px;
-			padding-top: 5%;
         
 	    }
     
 	    #sidebar-btn span{
 	        height: 1px;
-	        background: #c35b56;
+	        background: #f8f8f8;
 	        margin-bottom: 5px;
 	        display: block;
+            border: 1px #f8f8f8 solid;
+            background:  #525564;
 	    }
     
         
@@ -216,38 +230,6 @@
 	            font-size: 60px;
 	            text-align:center;
 	        }
-
-        
-	        #fade { /*--Transparent background layer--*/
-	display: none; /*--hidden by default--*/
-	background: #fff;
-	background-image: url(''); /*if you want to add a background image to go behind your popup */
-	position: fixed; left: 0; top: 0;
-	width: 100%; height: 100%;
-	opacity: .80;
-	z-index: 9999;
-	}
-	.popup_block{
-	 display: none; /*--hidden by default--*/
-	 background: #f8f8f8;
-	 padding: 20px;
-	 float: left;
-	 font-size: 12px; /*font size of the words inside the box */
-	 position: fixed;
-	 top: 50%; left: 50%;
-	 z-index: 99999; /*if the box is hiding behind other things in your theme, add more 9′s */
-	}
-	img.btn_close {
-	 float: right;
-	 margin: -5px -5px 0 0;
-	}
-	/*--Making IE6 Understand Fixed Positioning--*/
-	*html #fade {
-	 position: absolute;
-	}
-	*html .popup_block {
-	 position: absolute;
-	}
 
 	.box1:hover, .box2:hover,.box3:hover {
 	    opacity: .4;
@@ -298,15 +280,50 @@
 		font-family: 'Poetsen One';
 		src: url('PoetsenOne-Regular.ttf');  
 	}
-	</style>
-</head>
+        
+        #fade { /*--Transparent background layer--*/
+display: none; /*--hidden by default--*/
+background: #fff;
+background-image: url(''); /*if you want to add a background image to go behind your popup */
+position: fixed; left: 0; top: 0;
+width: 100%; height: 100%;
+opacity: .80;
+z-index: 9999;
+}
+.popup_block{
+ display: none; /*--hidden by default--*/
+ background: #f8f8f8;
+ padding: 20px;
+ border: 1px solid #ddd; /*color of the border of the popup box*/
+ float: left;
+ font-size: 12px; /*font size of the words inside the box */
+ position: fixed;
+ top: 50%; left: 50%;
+ z-index: 99999; /*if the box is hiding behind other things in your theme, add more 9′s */
+}
+img.btn_close {
+ float: right;
+ margin: -5px -5px 0 0;
+}
+/*--Making IE6 Understand Fixed Positioning--*/
+*html #fade {
+ position: absolute;
+}
+*html .popup_block {
+ position: absolute;
+}
+        
+        	@font-face {
+		font-family: 'Poetsen One';
+		src: url('PoetsenOne-Regular.ttf');  
+	}
+    </style>
+    
 
- 
-
+</head>    
+    
 <body>
-
-   
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script>
     $(document).ready(function(){
       $('#sidebar-btn').click(function(){
@@ -314,8 +331,8 @@
     });
          });
     </script>
-		 
-		 <!--large-->
+    
+ 		 <!--large-->
     <div id="container2" class="hidden-xs">
         <div class="container">
             <div class="row">
@@ -336,7 +353,8 @@
                         <a href="profile.html">Profile</a>
                         <a href="login.html">LogIn</a>
                     </div>
-                    </div>	</div>
+                    </div>	
+                    </div>
                     <div class="col-md-0 col-sm-0 col-xs-0"></div>	                
                 </div>
         </div>  
@@ -361,7 +379,8 @@
         </div>
     </div>
 	 </div>
-    
+     <!--large-->
+    <div class="hidden-xs">
     <div class="container4">
    <div class="container">
        <div class="row">
@@ -375,41 +394,102 @@
         </div>
      </div> 
     </div> 
-    <div class="container5">
+ </div>
+    
+     <!--extra small-->
+<div class="visible-xs">
+    <div class="container4">
+   <div class="container">
+       <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <p class="t2xs" align="center">
+                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum claritatem. Investigationes demonstraverunt lectores legere me lius quod ii legunt saepius.
+                    </p>
+                    
+                </div>
+           
+        </div>
+     </div> 
+    </div> 
+</div>
+        <div class="container5">
 		<div class="container">
 		       <div class="row">
-				   <div class="col-lg-0 col-md-0 col-sm-0 col-xs-0"></div>	
-		                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-    	<img  src="world.png" width="100%" id="map"> 
-		 </div>
-		 <div class="col-lg-0 col-md-0 col-sm-0 col-xs-0"></div>	
-	                </div>
+				    <div class="col-lg-0 col-md-0 col-sm-0 col-xs-0"></div>	
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    	               <img  src="world.png" width="100%" id="map"> 
+                    </div>
+                    <div class="col-lg-0 col-md-0 col-sm-0 col-xs-0"></div>	
+	            </div>
            
 	        </div>
 	     </div>
-    </div>
-	
-    <div class="container3">
+    
+    <!--large-->
+
+    <div id="container3">
         <div class="one"></div>
-        <div class="type"><div class="box1"><div style="letter-spacing: 10px;"><a href="#?w=500" rel="02" class="poplight">Leisure</a></div></div></div>
+        <div class="type"><div class="box1"><div style="letter-spacing: 10px; font-size: 34px">
+
+           <div class="visible-xs">
+                       <a href="#?w=300" rel="02" class="poplight">Leisure</a>
+                    </div>  
+                   
+                    <div class="hidden-xs">
+                       <a href="#?w=500" rel="02" class="poplight">Leisure</a>
+                    </div>  
+
+            </div></div></div>
         <div id="02" class="popup_block"><p style="text-align:center; font-size: 14px; color: #525564; padding:8%;" >Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan. </p>
         <img src="leisure.png" style="width:90%; margin-left: 5%; padding-bottom:8%;">
         </div>
         
-        <div class="type"><div class="box2"><div style="letter-spacing: 10px;"><a href="#?w=500" rel="03" class="poplight">Business</a></div></div></div>
+        <div class="type">
+            <div class="box2">
+                <div style="letter-spacing: 10px;font-size: 34px">
+                   <div class="visible-xs">
+                       <a href="#?w=300" rel="03" class="poplight">Business</a>
+                    </div>  
+                   
+                    <div class="hidden-xs">
+                       <a href="#?w=500" rel="03" class="poplight">Business</a>
+                    </div>             
+                </div>
+            </div>
+        </div>
+        
         <div id="03" class="popup_block"><p style="text-align:center; padding:8%; font-size: 14px; color: #525564;">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan. </p>
             <img src="business.png" style="width:90%; margin-left: 5%; padding-bottom:8%;">
         <div class="box"></div></div>
         
+  
         <div class="type">
             <div class="box3">
-               <div style="letter-spacing: 10px;"><a href="#?w=500" rel="04" class="poplight">Exchange</a></div> 
-            </div>
+               <div style="letter-spacing: 10px;font-size:34px"> 
+                   <div class="visible-xs">
+                       <a href="#?w=300" rel="04" class="poplight">Exchange</a>
+                    </div>  
+                   
+                    <div class="hidden-xs">
+                       <a href="#?w=500" rel="04" class="poplight">Exchange</a>
+                    </div>  
+                   
+                </div> 
+            </div>      
         </div>
+
+        
         <div id="04" class="popup_block">
             <p style="text-align:center; font-size: 14px; color: #525564; padding:8%; ">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan. 
             </p>
             <img src="exchange.png" style="width:90%; margin-left: 5%; padding-bottom:8%;">
         </div>
     </div>
+   
+   
+          
+   
+
+
 </body>
+</html>
